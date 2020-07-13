@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-
 import modelo.Departamento;
 import modelo.Empleado;
 import modelo.DAO.EmpleadoDAO;
@@ -40,8 +39,10 @@ public class inicioController extends HttpServlet {
 			LOG.equals(e);
 			e.printStackTrace();
 
+		} finally {
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+
 	}
 
 	/**
@@ -56,49 +57,50 @@ public class inicioController extends HttpServlet {
 		String ape2 = request.getParameter("ape2");
 		String nif = request.getParameter("nif");
 		String depto = request.getParameter("departamento");
-		int codDepto = Integer.parseInt(depto);
 
+		int departamento = Integer.parseInt(depto);
+
+		EmpleadoDAO dao= EmpleadoDAO.getInstance();
+		
 		String mensaje = "";
 
 		boolean isRediret = true;
 
 		try {
 			LOG.trace("accedemos al controlador");
-			
-			Empleado e =new Empleado();
-			Departamento d= new Departamento();
-			
-			
+
+			Empleado e = new Empleado();
+			Departamento d = new Departamento();
+
 			e.setNombre(nombre);
 			e.setApe1(ape1);
 			e.setApe2(ape2);
 			e.setNif(nif);
-			d.setCodigo(codDepto);
-			e.setDepartamento(d); 
+			d.setCodigo(departamento);
+			e.setDepartamento(d);
 			dao.insertar(e);
-			mensaje="Nuevo empleado registrado con exito";
-			
+			mensaje = "Nuevo empleado registrado con exito";
+
 		} catch (Exception e) {
 			LOG.error(e);
-		
-		mensaje=" Se ha producido un error.";
-		
-		}finally {
-			
-			request.setAttribute("nombre",nombre);
-			request.setAttribute("ape1",ape1);
-			request.setAttribute("ape2",ape2);
-			request.setAttribute("nif",nif);
-			request.setAttribute("codDepto",codDepto);
-			
-			
-			request.setAttribute("mensaje ",mensaje);
-			
+
+			mensaje = " Se ha producido un error.";
+
+		} finally {
+
+			request.setAttribute("nombre", nombre);
+			request.setAttribute("ape1", ape1);
+			request.setAttribute("ape2", ape2);
+			request.setAttribute("nif", nif);
+			request.setAttribute("departamento", departamento);
+
+			request.setAttribute("mensaje ", mensaje);
+
 			request.setAttribute("empleados", dao.getInstance());
-			
+
 			request.getRequestDispatcher("index.jsp").forward(request, response);
-			
+
 		}
-		
+
 	}
 }

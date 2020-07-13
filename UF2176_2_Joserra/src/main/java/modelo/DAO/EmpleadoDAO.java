@@ -105,6 +105,7 @@ public class EmpleadoDAO {
 				try (ResultSet rsKeys = pst.getGeneratedKeys()) {
 
 					if (rsKeys.next()) {
+						
 						int id = rsKeys.getInt(1);
 						e.setCodigo(id);
 					}

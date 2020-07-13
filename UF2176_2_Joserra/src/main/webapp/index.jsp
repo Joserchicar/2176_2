@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+  
 
 <!doctype html>
 <html lang="en">
@@ -69,7 +70,7 @@
 							<input type="text" placeholder="introduzca el NIF" name="nif" id="nif" required>
 						</div>
 						<div>	
-							<label for="departamento"><b>NIF</b></label> 
+							<label for="departamento"><b>Departamento</b></label> 
 							<input type="text" placeholder="introduzca el departamento" name="nif" id="departamento" required>
 						</div>
 						
@@ -94,7 +95,7 @@
 			<tbody>
 				<c:forEach items="${empleados}" var="empleado">
 					<tr>
-						<th scope="row">1</th>
+						<th scope="row">${empleado.codigo}</th>
 						<td>${empleado.nombre},${empleado.ape1}${empleado.ape2}</td>
 						<td>${empleado.nif}</td>
 						<td>
