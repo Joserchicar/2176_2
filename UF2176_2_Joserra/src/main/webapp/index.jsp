@@ -34,8 +34,9 @@
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
+			<form action="inicio" method="get"form-inlinemy-2my-lg-0">
+				<input name="resultado" value="${resultado}"
+					class="form-control mr-sm-2" type="search"
 					placeholder="nombre, apellido o NIF" aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
 			</form>
@@ -44,8 +45,42 @@
 
 
 	<main class="container">
+		
 
-		<a href="">TODO Formulario para crear Empleado</a>
+		<div>
+			<form action="inicio" method="post">
+				<div class="container">
+					<h3>Registro nuevo Empleado</h3>
+					<hr>
+						<div>
+							<label for="nombre"><b>nombre</b></label> 
+							<input type="text" placeholder="introduzca el nombre" name="nombre" id="nombre" required>
+						</div>
+						<div>
+							<label for="ape1"><b>Apellido 1</b></label> 
+							<input type="text" placeholder="introduzca el apellido 1" name="ape1" id="ape1" required>	
+						</div>
+						<div>
+							<label for="ape2"><b>Apellido 2</b></label> 
+							<input type="text" placeholder="introduzca el apellido 2" name="ape2" id="ape2" required>
+						</div>
+						<div>	
+							<label for="nif"><b>NIF</b></label> 
+							<input type="text" placeholder="introduzca el NIF" name="nif" id="nif" required>
+						</div>
+						<div>	
+							<label for="departamento"><b>NIF</b></label> 
+							<input type="text" placeholder="introduzca el departamento" name="nif" id="departamento" required>
+						</div>
+						
+					<hr>
+					
+					<button type="submit" class="registerbtn">crear</button>
+				</div>
+		</div>
+
+
+
 
 		<table class="table" id="example">
 			<thead class="thead-dark">
@@ -60,7 +95,7 @@
 				<c:forEach items="${empleados}" var="empleado">
 					<tr>
 						<th scope="row">1</th>
-						<td>${empleado.nombre},${empleado.ape1} ${empleado.ape2}</td>
+						<td>${empleado.nombre},${empleado.ape1}${empleado.ape2}</td>
 						<td>${empleado.nif}</td>
 						<td>
 							<button type="button" class="btn btn-link" data-toggle="popover"
@@ -73,6 +108,14 @@
 
 			</tbody>
 		</table>
+
+
+
+
+
+
+
+
 
 	</main>
 
